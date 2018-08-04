@@ -1,23 +1,31 @@
 <template>
-  <v-toolbar fixed class="cyan">
-    <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title class="mr-4" @click="navigateTo({name: 'root'})"><span class="home">Главная</span></v-toolbar-title>
+  <v-toolbar fixed class="cyan">    
+    <v-toolbar-title class="mr-4" @click="navigateTo({name: 'root'})">
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn
+        flat
+        @click="navigateTo({ name: 'songs'})">
+        Songs
+      </v-btn>
       <v-btn 
         flat 
         @click="navigateTo({ name: 'login' })">
-        Войти
+        Enter
       </v-btn>
       <v-btn 
+        v-if="$store.state.isUserLoggedIn"
         flat 
         @click="navigateTo({ name: 'logout' })">
-        Выйти
+        Logout
       </v-btn>
       <v-btn 
+        v-if="!$store.state.isUserLoggedIn"
         flat 
         :to="{ name: 'register' }">
-        Регистрация
+        Register
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
