@@ -39,18 +39,25 @@ export default {
   name: 'Register',
   data () {
     return {
-      email: 'abc@abc.com',
-      password: '123'
+      email: 'user@admin.com',
+      password: '12345678'
     }
   },
   methods: {
     async register () {
-      const response = await AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
-      this.$store.dispatch('setToken', response.data.token)
-      this.$store.dispatch('setUser', response.data.user)
+      try {
+        const response = await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
   },
   watch: {
@@ -62,5 +69,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

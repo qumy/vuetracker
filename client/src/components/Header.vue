@@ -1,31 +1,54 @@
 <template>
-  <v-toolbar fixed class="cyan">
-    <v-toolbar-title class="mr-4" @click="navigateTo({name: 'root'})">
-      <v-toolbar-side-icon></v-toolbar-side-icon>
+  <v-toolbar fixed class="cyan" dark>
+    <v-toolbar-title class="mr-4">
+      <router-link
+        class="home"
+        tag="span"
+        :to="{
+          name: 'songs'
+        }">
+      </router-link>
     </v-toolbar-title>
+
+    <v-toolbar-items>
+      <v-btn
+        flat
+        dark
+        :to="{
+          name: 'songs'
+        }">
+      </v-btn>
+    </v-toolbar-items>
+
     <v-spacer></v-spacer>
-    <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn
-        flat
-        @click="navigateTo({ name: 'songs'})">
-        Songs
-      </v-btn>
-      <v-btn
-        flat
-        @click="navigateTo({ name: 'login' })">
-        Enter
-      </v-btn>
-      <v-btn
-        v-if="$store.state.isUserLoggedIn"
-        flat
-        @click="navigateTo({ name: 'logout' })">
-        Logout
-      </v-btn>
+
+    <v-toolbar-items>
       <v-btn
         v-if="!$store.state.isUserLoggedIn"
         flat
-        :to="{ name: 'register' }">
-        Register
+        dark
+        :to="{
+          name: 'login'
+        }">
+        Login
+      </v-btn>
+
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        flat
+        dark
+        :to="{
+          name: 'register'
+        }">
+        Sign Up
+      </v-btn>
+
+      <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        flat
+        dark
+        @click="logout">
+        Log Out
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -34,24 +57,23 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    },
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
       this.$router.push({
-        name: 'root'
+        name: 'songs'
       })
     }
   }
 }
 </script>
+
 <style scoped>
 .home {
   cursor: pointer;
 }
-.home.hover {
+
+.home:hover {
   color: #e9e;
 }
 </style>

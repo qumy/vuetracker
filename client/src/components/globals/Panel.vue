@@ -6,12 +6,9 @@
     </v-toolbar>
 
     <div class="pl-4 pr-4 pt-2 pb-2">
-      <div slot="hallo">
+      <slot>
         No slot content defined.
-      </div>
-      <div slot="buy">
-        No slot content defined.
-      </div>
+      </slot>
     </div>
   </div>
 </template>

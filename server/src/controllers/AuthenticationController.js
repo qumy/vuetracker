@@ -8,6 +8,7 @@ function jwtSignUser (user) {
     expiresIn: ONE_WEEK
   })
 }
+
 module.exports = {
   async register (req, res) {
     try {
@@ -31,18 +32,20 @@ module.exports = {
           email: email
         }
       })
+
       if (!user) {
         return res.status(403).send({
-          error: '403: The login information was incorrect'
+          error: 'The login information was incorrect'
         })
       }
+
       const isPasswordValid = await user.comparePassword(password)
-      console.log(isPasswordValid)
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect'
         })
       }
+
       const userJson = user.toJSON()
       res.send({
         user: userJson,
