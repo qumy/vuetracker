@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar fixed class="cyan">    
+  <v-toolbar fixed class="cyan">
     <v-toolbar-title class="mr-4" @click="navigateTo({name: 'root'})">
       <v-toolbar-side-icon></v-toolbar-side-icon>
     </v-toolbar-title>
@@ -10,20 +10,20 @@
         @click="navigateTo({ name: 'songs'})">
         Songs
       </v-btn>
-      <v-btn 
-        flat 
+      <v-btn
+        flat
         @click="navigateTo({ name: 'login' })">
         Enter
       </v-btn>
-      <v-btn 
+      <v-btn
         v-if="$store.state.isUserLoggedIn"
-        flat 
+        flat
         @click="navigateTo({ name: 'logout' })">
         Logout
       </v-btn>
-      <v-btn 
+      <v-btn
         v-if="!$store.state.isUserLoggedIn"
-        flat 
+        flat
         :to="{ name: 'register' }">
         Register
       </v-btn>
@@ -34,18 +34,18 @@
 <script>
 export default {
   methods: {
-    navigateTo(route) {
-      this.$router.push(route);
+    navigateTo (route) {
+      this.$router.push(route)
     },
-    logout() {
-      this.$store.dispatch("setToken", null);
-      this.$store.dispatch("setUser", null);
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
       this.$router.push({
-        name: "root"
-      });
+        name: 'root'
+      })
     }
   }
-};
+}
 </script>
 <style scoped>
 .home {

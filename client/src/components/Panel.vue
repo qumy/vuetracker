@@ -11,7 +11,7 @@
       </div>
       <div slot="buy">
         No slot content defined.
-      </div>      
+      </div>
     </div>
   </div>
 </template>
